@@ -1,10 +1,9 @@
 package application;
-	
+import Models.Article;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-
 
 public class Main extends Application {
 	@Override
@@ -15,6 +14,9 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			Article article = new Article("Name", 125, 2);
+			article.changeQuantity(5);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
