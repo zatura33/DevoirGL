@@ -27,5 +27,8 @@ public class Article {
 	public void setQuantity(int quantity) {
 		Quantity = quantity;
 	}
+	public String toString() {
+		return this.Name + " \tPrix : "+this.Price + " Quantité : "+this.Quantity;
+	}
 
 }
