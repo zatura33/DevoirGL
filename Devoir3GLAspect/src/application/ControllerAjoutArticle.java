@@ -29,22 +29,18 @@ public class ControllerAjoutArticle {
 	@FXML
 	void OnclickAjouter(ActionEvent event) {
 		if(this.txtNameArticle.getText().equals("") || this.txtQuantity.getText().equals("") || this.txtPriceArticle.getText().equals("")) {
-			System.out.println("Il semble y avoir une erreur dans l'ajout d'article ...");
+			System.out.println("Il semble y avoir une erreur dans l'ajout d'article. Un des champs n'est pas remplis.");
 			return;
 		}
 		try {
-			Article article = new Article(this.txtNameArticle.getText(), Integer.parseInt(this.txtPriceArticle.getText()),Integer.parseInt(this.txtQuantity.getText()));
-
+			Article article = new Article(this.txtNameArticle.getText(), Double.parseDouble(this.txtPriceArticle.getText()),Integer.parseInt(this.txtQuantity.getText()));
 			InventaireSingleton.getInstance().AddItem(article);
 			System.out.println("End");
-
 			Parent rootContainer;
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			Scene s=new Scene(rootContainer);
-
 			stageTheEventSourceNodeBelongs.setScene(s);
-
 		}
 		catch(Exception e) {
 			e.printStackTrace();
