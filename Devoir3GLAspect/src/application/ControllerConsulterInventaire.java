@@ -50,20 +50,25 @@ public class ControllerConsulterInventaire implements Initializable
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		System.out.println("start");
+		
+		TableColumn IDColomn = new TableColumn("ID");
+		IDColomn.setMinWidth(100);
+		IDColomn.setCellValueFactory(
+				new PropertyValueFactory<>("ID"));
 
-		TableColumn firstNameCol = new TableColumn("Nom");
-		firstNameCol.setMinWidth(200);
-		firstNameCol.setCellValueFactory(
+		TableColumn NameColumn = new TableColumn("Nom");
+		NameColumn.setMinWidth(200);
+		NameColumn.setCellValueFactory(
 				new PropertyValueFactory<>("Name"));
 
-		TableColumn TwoNameCol = new TableColumn("Prix");
-		TwoNameCol.setMinWidth(100);
-		TwoNameCol.setCellValueFactory(
+		TableColumn PriceColumn = new TableColumn("Prix");
+		PriceColumn.setMinWidth(100);
+		PriceColumn.setCellValueFactory(
 				new PropertyValueFactory<>("Price"));
 
-		TableColumn lastNameCol = new TableColumn("Quantite");
-		lastNameCol.setMinWidth(100);
-		lastNameCol.setCellValueFactory(
+		TableColumn QuantityColumn = new TableColumn("Quantite");
+		QuantityColumn.setMinWidth(100);
+		QuantityColumn.setCellValueFactory(
 				new PropertyValueFactory<>("Quantity"));
 
 		ObservableList<Article> articles = FXCollections.observableArrayList();
@@ -71,7 +76,7 @@ public class ControllerConsulterInventaire implements Initializable
 			articles.add(InventaireSingleton.getInstance().getListe().get(i));
 		}
 		System.out.println("Singleton size :" +InventaireSingleton.getInstance().getListe().size());
-		TableView.getColumns().addAll(firstNameCol,TwoNameCol, lastNameCol);
+		TableView.getColumns().addAll(IDColomn,NameColumn,PriceColumn, QuantityColumn);
 
 		TableView.setItems(articles);
 

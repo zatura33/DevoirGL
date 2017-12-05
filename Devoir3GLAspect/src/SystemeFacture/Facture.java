@@ -70,4 +70,8 @@ public class Facture
 	public void setVente(Vente vente) {
 		this.vente = vente;
 	}
+	
+	public Paiement CreatePaiement() {
+		return null;
+	}
 }

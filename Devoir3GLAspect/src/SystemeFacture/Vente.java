@@ -5,25 +5,29 @@ import java.util.List;
 import Models.Article;
 import Models.Membre;
 import SystemePaiement.Paiement;
+import application.DataBase;
 
 public class Vente {
-	private List<Article> listArticles;
+	private int ID;
+	private List<Article> ListArticles;
 	private double Montant;
-	private Membre membre;
+	private Membre Membre;
 
-	public Vente(List<Article> listArticles, double montant, Membre membre) {
-		super();
-		this.listArticles = listArticles;
+	public Vente(int id, List<Article> listArticles, double montant, Membre membre) {
+		setID(id);
+		ListArticles = listArticles;
 		Montant = montant;
-		this.membre = membre;
+		Membre = membre;
 	}
+	
+	public Vente() {}
 
 	public List<Article> getListArticles() {
-		return listArticles;
+		return ListArticles;
 	}
 
 	public void setListArticles(List<Article> listArticles) {
-		this.listArticles = listArticles;
+		this.ListArticles = listArticles;
 	}
 
 	public double getMontant() {
@@ -35,18 +39,32 @@ public class Vente {
 	}
 
 	public Membre getMembre() {
-		return membre;
+		return Membre;
 	}
 
 	public void setMembre(Membre membre) {
-		this.membre = membre;
+		this.Membre = membre;
 	}
 
-	public Facture CreateFacture() {
-		return null;
+	public Facture CreateFacture(double montant, boolean estPaye, province laProvince) {
+		Facture facture = new Facture(Integer.toString(DataBase.ListeFacture.size()+1),montant,estPaye,this,laProvince);
+		return  facture;
 	}
 
-	public Paiement CreatePaiement() {
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	public Vente ReturnMembreByID(int ID) {
+		for (int i = 0; i< DataBase.getVentes().size(); i++) {
+			if (DataBase.getVentes().get(i).ID == ID) {
+				return DataBase.getVentes().get(i);
+			}
+		}
 		return null;
 	}
 }

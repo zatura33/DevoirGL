@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class ControllerFacade {
+	Parent rootContainer;
 
 	@FXML
 	private Button payerFacture;
@@ -38,12 +39,20 @@ public class ControllerFacade {
 
 	@FXML
 	void OnClickNouvelleVente(ActionEvent event) {
+		try {
+			rootContainer = FXMLLoader.load(getClass().getResource("/application/NouvelleVente.fxml"));
+			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			Scene s=new Scene(rootContainer);
 
+			stageTheEventSourceNodeBelongs.setScene(s);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	void OnClickConsulterInventaire(ActionEvent event) {
-		Parent rootContainer;
 		try {
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/ConsulterInventaire.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -68,7 +77,6 @@ public class ControllerFacade {
 
 	@FXML
 	void OnClickAjoutArticle(ActionEvent event) {
-		Parent rootContainer;
 		try {
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/AjoutArticle.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();

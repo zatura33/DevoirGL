@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="504.0" prefWidth="564.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.ControllerNouvelleVente">
+   <children>
+      <TextField id="txtIDMembre" fx:id="txtIDMembre" layoutX="24.0" layoutY="41.0" prefHeight="25.0" prefWidth="250.0" />
+      <Label layoutX="24.0" layoutY="24.0" prefHeight="17.0" prefWidth="79.0" text="ID Membre :" />
+      <Label layoutX="24.0" layoutY="79.0" prefHeight="17.0" prefWidth="79.0" text="ID Article :" />
+      <TextField id="txtIDArticle" fx:id="txtIDArticle" layoutX="24.0" layoutY="96.0" prefHeight="25.0" prefWidth="91.0" />
+      <Button id="butScanArticle" layoutX="24.0" layoutY="132.0" mnemonicParsing="false" onAction="#onClickScanArticle" text="Scan Article" />
+      <TableView id="TableView" fx:id="TableView" layoutX="24.0" layoutY="170.0" prefHeight="277.0" prefWidth="511.0" />
+      <Button id="butFin" layoutX="24.0" layoutY="461.0" mnemonicParsing="false" onAction="#OnClickSuivant" text="Suivant" />
+      <Button id="butAnnuler" layoutX="477.0" layoutY="461.0" mnemonicParsing="false" onAction="#OnClickAnnuler" text="Annuler" />
+   </children>
+</AnchorPane>

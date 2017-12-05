@@ -5,16 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="322.0" prefWidth="442.0"
-	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-	fx:controller="application.ControllerConsulterInventaire">
+<AnchorPane prefHeight="324.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerConsulterInventaire">
 	<children>
-		<ListView fx:id="ListViewInventaire" prefHeight="277.0"
-			prefWidth="246.0" />
-		<Button fx:id="butRetour" layoutX="97.0" layoutY="283.0"
-			mnemonicParsing="false" onAction="#OnClickRetour" text="Retour" />
-		<TableView fx:id="TableView" prefHeight="277.0" prefWidth="442.0">
+		<Button fx:id="butRetour" layoutX="286.0" layoutY="277.0" mnemonicParsing="false" onAction="#OnClickRetour" text="Retour" />
+		<TableView fx:id="TableView" prefHeight="277.0" prefWidth="624.0">
 		</TableView>
 	</children>
 </AnchorPane>
