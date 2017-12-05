@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="221.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerResumeVente">
+<AnchorPane prefHeight="221.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="19.0" layoutY="150.0" mnemonicParsing="false" onAction="#OnClickPayerMaintenant" text="Payer Maintenant" />
       <Button layoutX="19.0" layoutY="182.0" mnemonicParsing="false" onAction="#OnClickPayerPlusTard" prefHeight="27.0" prefWidth="126.0" text="Payer plus tard" />

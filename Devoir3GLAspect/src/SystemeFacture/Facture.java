@@ -1,6 +1,7 @@
 package SystemeFacture;
 
 import SystemePaiement.*;
+import application.DataBase;
 
 public class Facture
 {
@@ -11,13 +12,15 @@ public class Facture
 	private ICalculTaxes CalculTaxes;
 
 
-	public Facture(String numFacture, double montant, boolean estPaye, Vente vente, province laProvince) {
+	public Facture(String numFacture, double montant, boolean estPaye, Vente vente, Province laProvince) 
+	{
 		NumFacture = numFacture;
 		Montant = montant;
 		this.estPaye = estPaye;
 		this.vente = vente;
 
-		switch(laProvince) {
+		switch(laProvince) 
+		{
 		case AB:
 			CalculTaxes = new CalculTaxesAB();
 			break;
@@ -31,47 +34,62 @@ public class Facture
 
 		Montant = CalculTaxes.CalculTaxes(montant);
 	}
+	
+	public Facture() {}
 
-	public String getNumFacture() {
+	public String getNumFacture() 
+	{
 		return NumFacture;
 	}
 
-
-	public void setNumFacture(String numFacture) {
+	public void setNumFacture(String numFacture) 
+	{
 		NumFacture = numFacture;
 	}
 
-
-	public double getMontant() {
+	public double getMontant() 
+	{
 		return Montant;
 	}
 
-
-	public void setMontant(double montant) {
+	public void setMontant(double montant) 
+	{
 		Montant = montant;
 	}
 
-
-	public boolean isEstPaye() {
+	public boolean isEstPaye() 
+	{
 		return estPaye;
 	}
 
-
-	public void setEstPaye(boolean estPaye) {
+	public void setEstPaye(boolean estPaye) 
+	{
 		this.estPaye = estPaye;
 	}
 
-
-	public Vente getVente() {
+	public Vente getVente() 
+	{
 		return vente;
 	}
 
-
-	public void setVente(Vente vente) {
+	public void setVente(Vente vente) 
+	{
 		this.vente = vente;
 	}
 	
-	public Paiement CreatePaiement() {
+	public Facture ReturnFactureByNumFacture(String NumFacture) 
+	{
+		for (int i = 0; i< DataBase.GetFacture().size(); i++) {
+			if (DataBase.GetFacture().get(i).getNumFacture() == NumFacture) {
+				return DataBase.GetFacture().get(i);
+			}
+		}
 		return null;
+	}
+	
+	public Paiement CreatePaiement(ModePaiement modePaiement) 
+	{
+		Paiement paiement = new Paiement(modePaiement,this.getMontant(),this);
+		return paiement;
 	}
 }

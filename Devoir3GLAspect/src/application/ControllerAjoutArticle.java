@@ -5,7 +5,6 @@ import Models.InventaireSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ControllerAjoutArticle {
+public class ControllerAjoutArticle 
+{
 
 	@FXML
 	private Button butAjout;
@@ -27,18 +27,21 @@ public class ControllerAjoutArticle {
 
 	@FXML
 	private TextField txtNameArticle;
-	
-    @FXML
-    private TextField txtIDArticle;
 
 	@FXML
-	void OnclickAjouter(ActionEvent event) {
-		if(this.txtNameArticle.getText().equals("") || this.txtIDArticle.getText().equals("") || this.txtQuantity.getText().equals("") || this.txtPriceArticle.getText().equals("")) {
-    		new Alert(Alert.AlertType.ERROR, "Il semble y avoir une erreur dans l'ajout d'article. Un des champs n'est pas remplis.").showAndWait();
+	private TextField txtIDArticle;
+
+	@FXML
+	void OnclickAjouter(ActionEvent event) 
+	{
+		if(this.txtNameArticle.getText().equals("") || this.txtIDArticle.getText().equals("") || this.txtQuantity.getText().equals("") || this.txtPriceArticle.getText().equals("")) 
+		{
+			new Alert(Alert.AlertType.ERROR, "Il semble y avoir une erreur dans l'ajout d'article. Un des champs n'est pas remplis.").showAndWait();
 			System.out.println("Il semble y avoir une erreur dans l'ajout d'article. Un des champs n'est pas remplis.");
 			return;
 		}
-		try {
+		try 
+		{
 			Article article = new Article(this.txtIDArticle.getText(),this.txtNameArticle.getText(), Double.parseDouble(this.txtPriceArticle.getText()),Integer.parseInt(this.txtQuantity.getText()));
 			InventaireSingleton.getInstance().AddItem(article);
 			System.out.println("End");
@@ -48,14 +51,17 @@ public class ControllerAjoutArticle {
 			Scene s=new Scene(rootContainer);
 			stageTheEventSourceNodeBelongs.setScene(s);
 		}
-		catch(Exception e) {
+		catch(Exception e) 
+		{
 			e.printStackTrace();
 		}    
 	}
 
 	@FXML
-	void OnclickRetour(ActionEvent event) {
-		try {
+	void OnclickRetour(ActionEvent event) 
+	{
+		try 
+		{
 			Parent rootContainer;
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -64,9 +70,9 @@ public class ControllerAjoutArticle {
 			stageTheEventSourceNodeBelongs.setScene(s);
 
 		}
-		catch(Exception e) {
+		catch(Exception e) 
+		{
 			e.printStackTrace();
 		}    
 	}
-
 }

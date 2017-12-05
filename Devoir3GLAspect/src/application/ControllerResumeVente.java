@@ -1,23 +1,17 @@
 package application;
 
-import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import Models.Article;
 import Models.Membre;
 import SystemeFacture.Facture;
 import SystemeFacture.Vente;
-import SystemeFacture.province;
-import javafx.application.Application;
+import SystemeFacture.Province;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,9 +21,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.stage.Stage;
 
-public class ControllerResumeVente implements Initializable{   
+public class ControllerResumeVente implements Initializable
+{   
+   public ControllerResumeVente(int ID) {
+	   IDVente = ID;
+   }
+	   
 	private Vente vente;
+	
+	private int IDVente;
+	
 	private Facture facture;
+	
     @FXML
     private Label lblNumFacture;
 
@@ -61,7 +64,7 @@ public class ControllerResumeVente implements Initializable{
     private Label lblEntreprise;
     
     @FXML
-    private ComboBox<province> cbProvince;
+    private ComboBox<Province> cbProvince;
 
     @FXML
     void OnClickPayerMaintenant(ActionEvent event) 
@@ -71,8 +74,22 @@ public class ControllerResumeVente implements Initializable{
     			ErrorMessage();
     			return;
     		}
-    		//facture.setEstPaye(true);
     		DataBase.AddFacture(facture);
+    		try 
+    		{
+        		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/Paiement.fxml"));
+        		fxmlLoader.setController(new ControllerPaiement(facture.getNumFacture()));
+        		
+        		Parent root1 = (Parent) fxmlLoader.load();
+        		Scene newScene=new Scene(root1);
+        		Stage anotherStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        		anotherStage.setScene(newScene);
+        		anotherStage.show();
+    		} 
+    		catch (IOException e) 
+    		{
+    			e.printStackTrace();
+    		}
     }
 
     @FXML
@@ -107,11 +124,10 @@ public class ControllerResumeVente implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
-		// TODO Auto-generated method stub
 		vente = new Vente();
-		vente = vente.ReturnMembreByID(DataBase.getVentes().size());
+		vente = vente.ReturnVenteByID(IDVente);
 		this.SetMembreValue(vente.getMembre());
-		cbProvince.setItems( FXCollections.observableArrayList( province.values()));
+		cbProvince.setItems( FXCollections.observableArrayList( Province.values()));
 		lblNbArticles.setText(Integer.toString(vente.getListArticles().size()));
 		lblNumFacture.setText("");
 		lblPrixTTC.setText("Need Province");
@@ -131,13 +147,12 @@ public class ControllerResumeVente implements Initializable{
     @FXML
     void OnClickProvince(ActionEvent event) {
     	
-	    	SingleSelectionModel<province> selectedType = cbProvince.getSelectionModel();
-	    	province pro = selectedType.getSelectedItem();
+	    	SingleSelectionModel<Province> selectedType = cbProvince.getSelectionModel();
+	    	Province pro = selectedType.getSelectedItem();
 	    	
 		facture = vente.CreateFacture(false, pro);
 		lblNumFacture.setText(facture.getNumFacture());
 		lblPrixTTC.setText(Double.toString(facture.getMontant()));
 		lblPrixHT.setText(Double.toString(vente.getMontant()));
     }
-
 }

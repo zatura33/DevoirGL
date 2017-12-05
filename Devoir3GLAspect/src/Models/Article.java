@@ -1,45 +1,67 @@
 package Models;
 
-public class Article {
+
+public class Article 
+{
 	private String ID;
 	private String Name;
 	private double Price;
 	private int Quantity;
-	public Article(String id, String name, double price, int quantity) {
+
+	public Article(String id, String name, double price, int quantity) 
+	{
 		ID = id;
 		Name = name;
 		Price = price;
 		Quantity = quantity;
 	}
 	
-	public Article() {
+	public Article() 
+	{
 	}
 	
-	public String getName() {
+	public String getName() 
+	{
 		return Name;
 	}
-	public void setName(String name) {
+	
+	public void setName(String name) 
+	{
 		Name = name;
 	}
-	public String getID() {
+	
+	public String getID() 
+	{
 		return ID;
 	}
-	public void setID(String id) {
+	
+	public void setID(String id) 
+	{
 		ID = id;
 	}
-	public double getPrice() {
+	
+	public double getPrice() 
+	{
 		return Price;
 	}
-	public void setPrice(double price) {
+	
+	public void setPrice(double price) 
+	{
 		Price = price;
 	}
-	public int getQuantity() {
+	
+	public int getQuantity() 
+	{
 		return Quantity;
 	}
-	public void setQuantity(int quantity) {
+	
+	public void setQuantity(int quantity) 
+	{
 		Quantity = quantity;
 	}
-	public String toString() {
+	
+	public String toString() 
+	{
 		return this.Name + " \tPrix : "+this.Price + " Quantité : "+this.Quantity;
 	}
 	

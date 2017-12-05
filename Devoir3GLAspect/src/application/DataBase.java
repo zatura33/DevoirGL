@@ -8,18 +8,17 @@ import Models.Membre;
 import SystemeFacture.Facture;
 import SystemeFacture.Vente;
 import SystemePaiement.Paiement;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-public class DataBase {
+public class DataBase 
+{
+	// Classe qui aurait la meme fonctionnalité qu'une base de données
+	
 	public static List<Facture> ListeFacture= new ArrayList<Facture>();
 	public static List<Paiement> ListePaiement= new ArrayList<Paiement>();
 	public static List<Vente> ListeVente= new ArrayList<Vente>();
 
-	public static Inventaire GetInventaire(){
+	public static Inventaire GetInventaire()
+	{
 		List<Article> Liste;
 		Liste = new ArrayList<Article>();
 
@@ -36,7 +35,8 @@ public class DataBase {
 
 	}
 
-	public static List<Membre> GetListMembre(){
+	public static List<Membre> GetListMembre()
+	{
 		List<Membre> Liste;
 		Liste = new ArrayList<Membre>();
 
@@ -47,19 +47,28 @@ public class DataBase {
 		return Liste;
 	}
 		
-	public static void AddFacture(Facture facture) {
+	public static void AddFacture(Facture facture) 
+	{
 		ListeFacture.add(facture);
 	}
 	
-	public static void AddPaiement(Paiement paiement) {
+	public static void AddPaiement(Paiement paiement) 
+	{
 		ListePaiement.add(paiement);
 	}
 	
-	public static void AddVente(Vente vente) {
+	public static void AddVente(Vente vente) 
+	{
 		ListeVente.add(vente);
 	}
 	
-	public static List<Vente> getVentes() {
+	public static List<Vente> GetVentes() 
+	{
 		return ListeVente;
+	}
+	
+	public static List<Facture> GetFacture() 
+	{
+		return ListeFacture;
 	}
 }

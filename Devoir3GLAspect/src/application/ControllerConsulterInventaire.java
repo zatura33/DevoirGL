@@ -2,10 +2,8 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import Models.Article;
 import Models.InventaireSingleton;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -29,10 +26,11 @@ public class ControllerConsulterInventaire implements Initializable
 	@FXML
 	private javafx.scene.control.TableView<Article> TableView;
 
-
 	@FXML
-	void OnClickRetour(ActionEvent event) {
-		try {
+	void OnClickRetour(ActionEvent event) 
+	{
+		try 
+		{
 			Parent rootContainer;
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -47,10 +45,10 @@ public class ControllerConsulterInventaire implements Initializable
 		}    
 
 	}
+	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		System.out.println("start");
-		
+	public void initialize(URL arg0, ResourceBundle arg1) 
+	{		
 		TableColumn IDColomn = new TableColumn("ID");
 		IDColomn.setMinWidth(100);
 		IDColomn.setCellValueFactory(
@@ -75,11 +73,8 @@ public class ControllerConsulterInventaire implements Initializable
 		for (int i = 0; i< InventaireSingleton.getInstance().getListe().size(); i++) {
 			articles.add(InventaireSingleton.getInstance().getListe().get(i));
 		}
-		System.out.println("Singleton size :" +InventaireSingleton.getInstance().getListe().size());
+		
 		TableView.getColumns().addAll(IDColomn,NameColumn,PriceColumn, QuantityColumn);
-
 		TableView.setItems(articles);
-
 	}
-
 }

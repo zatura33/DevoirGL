@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import Models.Article;
-import Models.InventaireSingleton;
 import Models.Membre;
 import SystemeFacture.Vente;
 import javafx.collections.FXCollections;
@@ -27,7 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class ControllerNouvelleVente implements Initializable {
+public class ControllerNouvelleVente implements Initializable 
+{
 		
 	ObservableList<Article> articles;
 	 @FXML
@@ -40,15 +39,19 @@ public class ControllerNouvelleVente implements Initializable {
     private TableView<Article> TableView;
 
     @FXML
-    void onClickScanArticle(ActionEvent event) {
-    	if(this.txtIDArticle.getText().equals("")) {
+    void onClickScanArticle(ActionEvent event) 
+    {
+    	if(this.txtIDArticle.getText().equals("")) 
+    	{
     		this.ErrorMessage();
 			return;
 		}
-		try {
+		try 
+		{
 			Article article = new Article();
 			article = article.ReturnArticleByID(this.txtIDArticle.getText());
-			if(article == null) {
+			if(article == null) 
+			{
 	    		this.ErrorMessage();
 	    		return;
 			}
@@ -56,15 +59,18 @@ public class ControllerNouvelleVente implements Initializable {
 			articles.add(article);
 			
 		}
-		catch(Exception e) {
+		catch(Exception e) 
+		{
 			e.printStackTrace();
 			this.ErrorMessage();
 		}    
     }
     
     @FXML
-    void OnClickSuivant(ActionEvent event) {
-		if(this.txtIDMembre.getText().equals("") || articles.size() == 0) {
+    void OnClickSuivant(ActionEvent event) 
+    {
+		if(this.txtIDMembre.getText().equals("") || articles.size() == 0) 
+		{
     		this.ErrorMessage();
     		return;
 		}
@@ -73,35 +79,44 @@ public class ControllerNouvelleVente implements Initializable {
 		
 		double montantHorsTaxe = 0;
 		List<Article> ArticlesVendu = new ArrayList<Article>();
-		for (Article mesArticles :articles) {
-			if(mesArticles.getQuantity() == 0) {
+		for (Article mesArticles :articles) 
+		{
+			if(mesArticles.getQuantity() == 0) 
+			{
 				new Alert(Alert.AlertType.ERROR, "L'article : "+mesArticles.getName()+" est actuellement en rupture de stock ...").showAndWait();
-				return;
+				continue;
 			}
 			montantHorsTaxe += mesArticles.getPrice();
 			mesArticles.setQuantity(mesArticles.getQuantity()-1);
 			ArticlesVendu.add(mesArticles);
 		}
-    	Vente vente = new Vente((DataBase.getVentes().size()+1), ArticlesVendu, montantHorsTaxe, membre);
+    	Vente vente = new Vente((DataBase.GetVentes().size()+1), ArticlesVendu, montantHorsTaxe, membre);
     	DataBase.AddVente(vente);
     	
-		Parent rootContainer;
-		try {
-			rootContainer = FXMLLoader.load(getClass().getResource("/application/ResumeVente.fxml"));
-			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
-			Scene s=new Scene(rootContainer);
-			stageTheEventSourceNodeBelongs.setScene(s);
+		try 
+		{
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/ResumeVente.fxml"));
+    		fxmlLoader.setController(new ControllerResumeVente(vente.getID()));
+    		
+    		Parent root1 = (Parent) fxmlLoader.load();
+    		Scene newScene=new Scene(root1);
+    		Stage anotherStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		anotherStage.setScene(newScene);
+    		anotherStage.show();
 	    	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 		
     }
 
     @FXML
-    void OnClickAnnuler(ActionEvent event) {
-    	try {
+    void OnClickAnnuler(ActionEvent event) 
+    {
+    	try 
+    	{
 			Parent rootContainer;
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -110,15 +125,15 @@ public class ControllerNouvelleVente implements Initializable {
 			stageTheEventSourceNodeBelongs.setScene(s);
 
 		}
-		catch(Exception e) {
+		catch(Exception e) 
+    	{
 			e.printStackTrace();
 		}    
     }	
     
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-	System.out.println("start");
-	
+	public void initialize(URL arg0, ResourceBundle arg1) 
+    {	
 	TableColumn IDColomn = new TableColumn("ID");
 	IDColomn.setMinWidth(100);
 	IDColomn.setCellValueFactory(
@@ -146,7 +161,8 @@ public class ControllerNouvelleVente implements Initializable {
 	TableView.setItems(articles);
 	}
     
-    public void ErrorMessage() {
+    public void ErrorMessage() 
+    {
 		new Alert(Alert.AlertType.ERROR, "Il semble y avoir une erreur, Veuillez Verifier que tous les champs sont remplis").showAndWait();
 		System.out.println("Il semble y avoir une erreur, Veuillez Verifier que tous les champs sont remplis");
     }

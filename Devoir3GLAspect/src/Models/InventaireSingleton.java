@@ -2,21 +2,25 @@ package Models;
 
 import application.DataBase;
 
-public class InventaireSingleton {
+public class InventaireSingleton 
+{
 	private static Inventaire instance;
-
 	private InventaireSingleton(){}
 
-	//static block initialization for exception handling
-	static{
-		try{
+	static
+	{
+		try
+		{
 			instance = DataBase.GetInventaire();
-		}catch(Exception e){
+		}
+		catch(Exception e)
+		{
 			throw new RuntimeException("Exception occured in creating singleton instance");
 		}
 	}
 
-	public static Inventaire getInstance(){
+	public static Inventaire getInstance()
+	{
 		return instance;
 	}
 
