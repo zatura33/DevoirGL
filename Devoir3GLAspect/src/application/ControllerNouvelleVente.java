@@ -64,7 +64,7 @@ public class ControllerNouvelleVente implements Initializable {
     
     @FXML
     void OnClickSuivant(ActionEvent event) {
-		if(this.txtIDArticle.getText().equals("") || this.txtIDMembre.getText().equals("")) {
+		if(this.txtIDMembre.getText().equals("") || articles.size() == 0) {
     		this.ErrorMessage();
     		return;
 		}
@@ -86,14 +86,9 @@ public class ControllerNouvelleVente implements Initializable {
     	DataBase.AddVente(vente);
     	
 		Parent rootContainer;
-		//FXMLLoader fxml;
 		try {
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/ResumeVente.fxml"));
-			//fxml = FXMLLoader.load(getClass().getResource("/application/ResumeVente.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
-			//ControllerResumeVente controller = fxml.getController();
-			//controller.SetIDVente(vente.getID());
-			//ControllerResumeVente.SetIDVente(vente.getID());
 			Scene s=new Scene(rootContainer);
 			stageTheEventSourceNodeBelongs.setScene(s);
 	    	

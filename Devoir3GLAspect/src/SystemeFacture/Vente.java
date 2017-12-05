@@ -46,8 +46,8 @@ public class Vente {
 		this.Membre = membre;
 	}
 
-	public Facture CreateFacture(double montant, boolean estPaye, province laProvince) {
-		Facture facture = new Facture(Integer.toString(DataBase.ListeFacture.size()+1),montant,estPaye,this,laProvince);
+	public Facture CreateFacture(boolean estPaye, province laProvince) {
+		Facture facture = new Facture(Integer.toString(DataBase.ListeFacture.size()+1),this.Montant,estPaye,this,laProvince);
 		return  facture;
 	}
 

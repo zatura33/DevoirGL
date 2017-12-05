@@ -8,6 +8,11 @@ import Models.Membre;
 import SystemeFacture.Facture;
 import SystemeFacture.Vente;
 import SystemePaiement.Paiement;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class DataBase {
 	public static List<Facture> ListeFacture= new ArrayList<Facture>();
