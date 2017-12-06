@@ -1,36 +1,47 @@
-	package SystemePaiement;
-	
-	import SystemeFacture.Facture;
-	
-	enum ModePaiement{Comptant, Cheque, Credit};
-	
-	public class Paiement {
+package SystemePaiement;
+
+import SystemeFacture.Facture;
+
+public class Paiement 
+{
 	private ModePaiement modePaiement;
 	private double Montant;
 	private Facture facture;
-	
-	public Paiement(ModePaiement modePaiement, double montant, Facture facture) {
+
+	public Paiement(ModePaiement modePaiement, double montant, Facture facture) 
+	{
 		this.modePaiement = modePaiement;
 		Montant = montant;
 		this.facture = facture;
 	}
-	public ModePaiement getModePaiement() {
+
+	public ModePaiement getModePaiement() 
+	{
 		return modePaiement;
 	}
-	public void setModePaiement(ModePaiement modePaiement) {
+
+	public void setModePaiement(ModePaiement modePaiement) 
+	{
 		this.modePaiement = modePaiement;
 	}
-	public double getMontant() {
+
+	public double getMontant() 
+	{
 		return Montant;
 	}
-	public void setMontant(double montant) {
+
+	public void setMontant(double montant) 
+	{
 		Montant = montant;
 	}
-	public Facture getFacture() {
+
+	public Facture getFacture() 
+	{
 		return facture;
 	}
-	public void setFacture(Facture facture) {
+
+	public void setFacture(Facture facture) 
+	{
 		this.facture = facture;
 	}
-	
-	}
+}

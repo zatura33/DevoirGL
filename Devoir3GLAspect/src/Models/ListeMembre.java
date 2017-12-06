@@ -5,15 +5,18 @@ import java.util.List;
 
 import application.DataBase;
 
-public class ListeMembre {
+public class ListeMembre 
+{
 	private List<Membre> Liste;
 
-
-	public ListeMembre() {
+	public ListeMembre() 
+	{
 		Liste = new ArrayList<Membre>();
 		Liste = DataBase.GetListMembre();
 	}
-	public List<Membre> getListe() {
+	
+	public List<Membre> getListe() 
+	{
 		return Liste;
 	}
 

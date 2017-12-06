@@ -5,25 +5,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="221.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerResumeVente">
+<AnchorPane prefHeight="221.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="19.0" layoutY="150.0" mnemonicParsing="false" onAction="#OnClickPayerMaintenant" text="Payer Maintenant" />
-      <Button layoutX="19.0" layoutY="182.0" mnemonicParsing="false" onAction="#OnClickPayerPlusTard" prefHeight="25.0" prefWidth="110.0" text="Payer plus tard" />
+      <Button layoutX="321.0" layoutY="183.0" mnemonicParsing="false" onAction="#OnClickPayerMaintenant" text="Payer Maintenant" />
+      <Button layoutX="182.0" layoutY="182.0" mnemonicParsing="false" onAction="#OnClickPayerPlusTard" prefHeight="27.0" prefWidth="126.0" text="Payer plus tard" />
       <ComboBox id="cbProvince" fx:id="cbProvince" layoutX="281.0" layoutY="42.0" onAction="#OnClickProvince" prefWidth="150.0" />
       <Label layoutX="21.0" layoutY="20.0" text="Facture :" />
-      <Label fx:id="lblNom" layoutX="21.0" layoutY="37.0" text="Nom" />
-      <Label fx:id="lblPrenom" layoutX="20.0" layoutY="54.0" text="Prenom" />
-      <Label fx:id="lblCodeUtilisateur" layoutX="20.0" layoutY="71.0" text="Code Utilisateur" />
-      <Label fx:id="lblAdresse" layoutX="20.0" layoutY="105.0" text="Adresse" />
-      <Label fx:id="lblNumtel" layoutX="21.0" layoutY="88.0" text="Numtel" />
-      <Label fx:id="lblEntreprise" layoutX="20.0" layoutY="122.0" text="Entreprise" />
+      <Label fx:id="lblNom" layoutX="80.0" layoutY="36.0" text="Nom" />
+      <Label fx:id="lblPrenom" layoutX="80.0" layoutY="52.0" text="Prenom" />
+      <Label fx:id="lblCodeUtilisateur" layoutX="80.0" layoutY="68.0" text="Code Utilisateur" />
+      <Label fx:id="lblAdresse" layoutX="80.0" layoutY="100.0" text="Adresse" />
+      <Label fx:id="lblNumtel" layoutX="80.0" layoutY="83.0" text="Numtel" />
+      <Label fx:id="lblEntreprise" layoutX="80.0" layoutY="118.0" text="Entreprise" />
       <Label layoutX="281.0" layoutY="71.0" text="Nombre total d'articles :" />
       <Label fx:id="lblNbArticles" layoutX="281.0" layoutY="88.0" text="nbArticles" />
       <Label layoutX="281.0" layoutY="105.0" text="Prix HT   :" />
       <Label layoutX="281.0" layoutY="122.0" text="Prix TTC :" />
-      <Label fx:id="lblPrixHT" layoutX="342.0" layoutY="105.0" text="PrixHT" />
-      <Label fx:id="lblPrixTTC" layoutX="342.0" layoutY="122.0" text="PrixTTC" />
-      <Label fx:id="lblNumFacture" layoutX="76.0" layoutY="20.0" text="NumFacture" />
+      <Label fx:id="lblPrixHT" layoutX="344.0" layoutY="105.0" text="PrixHT" />
+      <Label fx:id="lblPrixTTC" layoutX="344.0" layoutY="122.0" text="PrixTTC" />
+      <Label fx:id="lblNumFacture" layoutX="80.0" layoutY="20.0" text="NumFacture" />
       <Label layoutX="280.0" layoutY="20.0" text="Province :" />
+      <Label layoutX="21.0" layoutY="36.0" text="Nom :" />
+      <Label layoutX="21.0" layoutY="52.0" text="Prenom :" />
+      <Label layoutX="21.0" layoutY="68.0" text="Code :" />
+      <Label layoutX="21.0" layoutY="83.0" text="Numero :" />
+      <Label layoutX="20.0" layoutY="100.0" text="Adresse :" />
+      <Label layoutX="20.0" layoutY="117.0" text="Entreprise :" />
    </children>
 </AnchorPane>

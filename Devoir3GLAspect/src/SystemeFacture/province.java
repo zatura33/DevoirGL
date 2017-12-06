@@ -1,5 +1,3 @@
 package SystemeFacture;
 
-public enum province {
-QC,ON,AB
-}
+public enum Province {QC,ON,AB}

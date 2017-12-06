@@ -9,12 +9,16 @@ import SystemeFacture.Facture;
 import SystemeFacture.Vente;
 import SystemePaiement.Paiement;
 
-public class DataBase {
+public class DataBase 
+{
+	// Classe qui aurait la meme fonctionnalité qu'une base de données
+
 	public static List<Facture> ListeFacture= new ArrayList<Facture>();
 	public static List<Paiement> ListePaiement= new ArrayList<Paiement>();
 	public static List<Vente> ListeVente= new ArrayList<Vente>();
 
-	public static Inventaire GetInventaire(){
+	public static Inventaire GetInventaire()
+	{
 		List<Article> Liste;
 		Liste = new ArrayList<Article>();
 
@@ -31,30 +35,40 @@ public class DataBase {
 
 	}
 
-	public static List<Membre> GetListMembre(){
+	public static List<Membre> GetListMembre()
+	{
 		List<Membre> Liste;
 		Liste = new ArrayList<Membre>();
 
-		Liste.add(new Membre("1","Johann","Dufaud","123456789","22 rue des sapins", "8197016940","Devolutions"));
-		Liste.add(new Membre("2","Emile","Desrosiers","741852963","22 rue des sapins", "8197016940","Devolutions"));
-		Liste.add(new Membre("3","Vincent","Roy","963852741","22 rue des sapins", "8197016940","Devolutions"));
+		Liste.add(new Membre("Johann","Dufaud","111","22 rue des sapins", "8197016940","Devolutions"));
+		Liste.add(new Membre("Emile","Desrosiers","222","22 rue des sapins", "8197016940","Devolutions"));
+		Liste.add(new Membre("Vincent","Roy","333","22 rue des sapins", "8197016940","Devolutions"));
 
 		return Liste;
 	}
-		
-	public static void AddFacture(Facture facture) {
+
+	public static void AddFacture(Facture facture) 
+	{
 		ListeFacture.add(facture);
 	}
-	
-	public static void AddPaiement(Paiement paiement) {
+
+	public static void AddPaiement(Paiement paiement) 
+	{
 		ListePaiement.add(paiement);
 	}
-	
-	public static void AddVente(Vente vente) {
+
+	public static void AddVente(Vente vente) 
+	{
 		ListeVente.add(vente);
 	}
-	
-	public static List<Vente> getVentes() {
+
+	public static List<Vente> GetVentes() 
+	{
 		return ListeVente;
+	}
+
+	public static List<Facture> GetFacture() 
+	{
+		return ListeFacture;
 	}
 }
