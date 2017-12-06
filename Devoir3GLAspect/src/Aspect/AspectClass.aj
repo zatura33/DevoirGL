@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import application.ControllerAjoutArticle;
 import application.ControllerNouvelleVente;
+import application.ControllerPaiement;
+
 
 public aspect AspectClass 
 {
@@ -29,47 +31,61 @@ public aspect AspectClass
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Acces a l'inventaire sur la base de données");
+        System.out.println("Acces a l'inventaire sur la base de donnï¿½es");
     }
 	after() : callGetListMembre()
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Acces a la liste des membres sur la base de données");
+        System.out.println("Acces a la liste des membres sur la base de donnï¿½es");
     }
 	after() : callGetFacture()
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Acces a la liste des factures sur la base de données");
+        System.out.println("Acces a la liste des factures sur la base de donnï¿½es");
     }
 	after() : callGetVente()
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Acces a la liste des ventes sur la base de données");
+        System.out.println("Acces a la liste des ventes sur la base de donnï¿½es");
     }
 	
 	after() : callAddFacture()
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Ajout d`une facture sur la base de données");
+        System.out.println("Ajout d`une facture sur la base de donnï¿½es");
     }
 	
 	after() : callAddPaiement()
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Ajout d`un paiement sur la base de données");
+        System.out.println("Ajout d`un paiement sur la base de donnï¿½es");
     }
 	
 	after() : callAddVente()
 	{
 		date = new Date();
         System.out.println(date.toString());
-        System.out.println("Ajout d`une vente sur la base de données");
+        System.out.println("Ajout d`une vente sur la base de donnï¿½es");
     }
+	// ------------------------------- Aspect 2 Supprimer le client si la facture est payÃ© ------------------------------------//
+
+	pointcut callAddPaiementX(Paiement paiement):
+		call(void AddPaiement(Paiement))&& args(paiement)&& within (ControllerPaiement);
+	
+	before(Paiement paiement): callAddPaiementX(paiement)
+	{
+		if(paiement.getFacture().isEstPaye())
+		{
+			paiement.getFacture().getVente().setMembre(null);
+	        System.out.println(date.toString());
+	        System.out.println("Facture payÃ©, client supprimÃ©");
+		}
+	}
 	
 	// ------------------------------- Aspect TEST Ne pas prendre en compte ... ------------------------------------//
 	public int Inventaire.ItemExist(Article article, List<Article> Liste) 
@@ -97,7 +113,7 @@ public aspect AspectClass
 		{
 			if(article.getID().equals(listeArticles.get(a).getID()) && !article.getName().equals(listeArticles.get(a).getName()))
 			{
-				throw new IllegalArgumentException("Cet ID est deja utilisé");
+				throw new IllegalArgumentException("Cet ID est deja utilisï¿½");
 			}
 		}
 	}
