@@ -23,84 +23,87 @@ import javafx.stage.Stage;
 
 public class ControllerResumeVente implements Initializable
 {   
-   public ControllerResumeVente(int ID) {
-	   IDVente = ID;
-   }
-	   
+	public ControllerResumeVente(int ID) {
+		IDVente = ID;
+	}
+
 	private Vente vente;
-	
+
 	private int IDVente;
-	
+
 	private Facture facture;
-	
-    @FXML
-    private Label lblNumFacture;
 
-    @FXML
-    private Label lblPrenom;
+	@FXML
+	private Label lblNumFacture;
 
-    @FXML
-    private Label lblNom;
+	@FXML
+	private Label lblPrenom;
 
-    @FXML
-    private Label lblAdresse;
+	@FXML
+	private Label lblNom;
 
-    @FXML
-    private Label lblNbArticles;
+	@FXML
+	private Label lblAdresse;
 
-    @FXML
-    private Label lblCodeUtilisateur;
+	@FXML
+	private Label lblNbArticles;
 
-    @FXML
-    private Label lblNumtel;
+	@FXML
+	private Label lblCodeUtilisateur;
 
-    @FXML
-    private Label lblPrixTTC;
+	@FXML
+	private Label lblNumtel;
 
-    @FXML
-    private Label lblPrixHT;
+	@FXML
+	private Label lblPrixTTC;
 
-    @FXML
-    private Label lblEntreprise;
-    
-    @FXML
-    private ComboBox<Province> cbProvince;
+	@FXML
+	private Label lblPrixHT;
 
-    @FXML
-    void OnClickPayerMaintenant(ActionEvent event) 
-    {
-    		if(facture == null) 
-    		{
-    			ErrorMessage();
-    			return;
-    		}
-    		DataBase.AddFacture(facture);
-    		try 
-    		{
-        		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/Paiement.fxml"));
-        		fxmlLoader.setController(new ControllerPaiement(facture.getNumFacture()));
-        		
-        		Parent root1 = (Parent) fxmlLoader.load();
-        		Scene newScene=new Scene(root1);
-        		Stage anotherStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        		anotherStage.setScene(newScene);
-        		anotherStage.show();
-    		} 
-    		catch (IOException e) 
-    		{
-    			e.printStackTrace();
-    		}
-    }
+	@FXML
+	private Label lblEntreprise;
 
-    @FXML
-    void OnClickPayerPlusTard(ActionEvent event) 
-    {
+	@FXML
+	private ComboBox<Province> cbProvince;
+
+	@FXML
+	void OnClickPayerMaintenant(ActionEvent event) 
+	{
+		if(facture == null) 
+		{
+			ErrorMessage();
+			return;
+		}
+
+		// On ajoute la facture sur la base de donne et on vas dans la nouvelle vue pour le paiement
+		DataBase.AddFacture(facture);
+		try 
+		{
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/Paiement.fxml"));
+			fxmlLoader.setController(new ControllerPaiement(facture.getNumFacture()));
+
+			Parent root1 = (Parent) fxmlLoader.load();
+			Scene newScene=new Scene(root1);
+			Stage anotherStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			anotherStage.setScene(newScene);
+			anotherStage.show();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	void OnClickPayerPlusTard(ActionEvent event) 
+	{
 		if(facture == null) {
 			ErrorMessage();
 			return;
 		}
+		// Ajout de la facture dans la BDD, elle sera disponnible en mode estPaye : false pour le paiement, et nous retournons sur la facade
 		DataBase.AddFacture(facture);
-		
+		new Alert(Alert.AlertType.CONFIRMATION, "Voici votre numero de facture : "+facture.getNumFacture()+ "\nVeuillez le notez pour le paiement futur de celle-ci.").showAndWait();
 		try 
 		{
 			Parent rootContainer;
@@ -113,14 +116,14 @@ public class ControllerResumeVente implements Initializable
 		{
 			e.printStackTrace();
 		}
-		
-    }
-    
-    public void ErrorMessage() 
-    {
+
+	}
+
+	public void ErrorMessage() 
+	{
 		new Alert(Alert.AlertType.ERROR, "Erreur, Veuillez choisir une province").showAndWait();
-    }
-    
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
@@ -130,10 +133,10 @@ public class ControllerResumeVente implements Initializable
 		cbProvince.setItems( FXCollections.observableArrayList( Province.values()));
 		lblNbArticles.setText(Integer.toString(vente.getListArticles().size()));
 		lblNumFacture.setText("");
-		lblPrixTTC.setText("Need Province");
+		lblPrixTTC.setText("Province Requise");
 		lblPrixHT.setText(Double.toString(vente.getMontant()));
 	}
-	
+
 	private void SetMembreValue(Membre membre) 
 	{
 		this.lblPrenom.setText(membre.getPrenom());
@@ -143,16 +146,16 @@ public class ControllerResumeVente implements Initializable
 		this.lblNumtel.setText(membre.getNumTel());
 		this.lblEntreprise.setText(membre.getEntreprise());
 	}
-	
-    @FXML
-    void OnClickProvince(ActionEvent event) {
-    	
-	    	SingleSelectionModel<Province> selectedType = cbProvince.getSelectionModel();
-	    	Province pro = selectedType.getSelectedItem();
-	    	
+
+	@FXML
+	void OnClickProvince(ActionEvent event) {
+
+		SingleSelectionModel<Province> selectedType = cbProvince.getSelectionModel();
+		Province pro = selectedType.getSelectedItem();
+
 		facture = vente.CreateFacture(false, pro);
 		lblNumFacture.setText(facture.getNumFacture());
 		lblPrixTTC.setText(Double.toString(facture.getMontant()));
 		lblPrixHT.setText(Double.toString(vente.getMontant()));
-    }
+	}
 }

@@ -21,9 +21,7 @@ import javafx.stage.Stage;
 
 public class ControllerPaiement implements Initializable
 {
-	public ControllerPaiement(String numFacture) {
-		NumFacture = numFacture;
-	}
+	private Parent rootContainer;
 
 	private ModePaiement methodePaiement;
 
@@ -37,6 +35,11 @@ public class ControllerPaiement implements Initializable
 	@FXML
 	private ComboBox<ModePaiement> cbTypePaiement;
 
+	// On fait passer par les parametres le numero de facture pour retrouver la facture
+	public ControllerPaiement(String numFacture) {
+		NumFacture = numFacture;
+	}
+
 	@FXML
 	void OnClickPayer(ActionEvent event) 
 	{
@@ -45,6 +48,8 @@ public class ControllerPaiement implements Initializable
 			new Alert(Alert.AlertType.ERROR, "Erreur, Veuillez choisir une methode de paiement").showAndWait();
 			return;
 		}
+		
+		// Le paiement est effectué nous pouvons donc créer le paiement, le stocker dans la BDD et mettre la facture en mode estPaye en true
 		Paiement paiement = facture.CreatePaiement(this.methodePaiement);
 		facture.setEstPaye(true);
 		DataBase.AddPaiement(paiement);
@@ -52,7 +57,6 @@ public class ControllerPaiement implements Initializable
 
 		try 
 		{
-			Parent rootContainer;
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			Scene s=new Scene(rootContainer);
@@ -71,7 +75,7 @@ public class ControllerPaiement implements Initializable
 	{
 		try 
 		{
-			Parent rootContainer;
+			// On annule on retourne a la facade
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			Scene s=new Scene(rootContainer);
@@ -95,6 +99,7 @@ public class ControllerPaiement implements Initializable
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
+		// On retrouve la facture grace a son numero de facture
 		facture = new Facture();
 		cbTypePaiement.setItems( FXCollections.observableArrayList( ModePaiement.values()));
 		facture = facture.ReturnFactureByNumFacture(NumFacture);

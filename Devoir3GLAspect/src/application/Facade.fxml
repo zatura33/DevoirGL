@@ -5,28 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="251.0" prefWidth="168.0"
-	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-	fx:controller="application.ControllerFacade">
+<AnchorPane prefHeight="251.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerFacade">
 	<children>
-		<Button fx:id="inscription" layoutX="14.0" layoutY="95.0"
-			mnemonicParsing="false" onAction="#OnClickInscriptionMembre"
-			prefHeight="25.0" prefWidth="131.0" text="Inscription Membre" />
-		<Button fx:id="vente" layoutX="14.0" layoutY="15.0"
-			mnemonicParsing="false" onAction="#OnClickNouvelleVente" prefHeight="25.0"
-			prefWidth="131.0" text="Nouvelle vente" />
-		<Button fx:id="Inventaire" layoutX="14.0" layoutY="207.0"
-			mnemonicParsing="false" onAction="#OnClickConsulterInventaire"
-			prefHeight="25.0" prefWidth="131.0" text="Consulter Inventaire" />
-		<Button fx:id="payerFacture" layoutX="14.0" layoutY="57.0"
-			mnemonicParsing="false" onAction="#OnClickPayerFacture" prefHeight="25.0"
-			prefWidth="131.0" text="Paiement Facure" />
-		<Button fx:id="dossierMembre" layoutX="14.0" layoutY="131.0"
-			mnemonicParsing="false" onAction="#OnClickDossierMembre" prefHeight="25.0"
-			prefWidth="131.0" text="Consulter dossier" />
-		<Button fx:id="ajoutArticle" layoutX="14.0" layoutY="172.0"
-			mnemonicParsing="false" onAction="#OnClickAjoutArticle" prefHeight="25.0"
-			prefWidth="131.0" text="Ajouter Article" />
+		<Button fx:id="inscription" layoutX="24.0" layoutY="212.0" mnemonicParsing="false" onAction="#OnClickInscriptionMembre" prefHeight="25.0" prefWidth="131.0" text="Inscription Membre" textFill="RED" />
+		<Button fx:id="vente" layoutX="24.0" layoutY="178.0" mnemonicParsing="false" onAction="#OnClickNouvelleVente" prefHeight="25.0" prefWidth="131.0" text="Nouvelle vente" />
+		<Button fx:id="Inventaire" layoutX="316.0" layoutY="212.0" mnemonicParsing="false" onAction="#OnClickConsulterInventaire" prefHeight="25.0" prefWidth="131.0" text="Consulter Inventaire" />
+		<Button fx:id="payerFacture" layoutX="170.0" layoutY="178.0" mnemonicParsing="false" onAction="#OnClickPayerFacture" prefHeight="25.0" prefWidth="131.0" text="Paiement Facure" textFill="RED" />
+		<Button fx:id="dossierMembre" layoutX="170.0" layoutY="212.0" mnemonicParsing="false" onAction="#OnClickDossierMembre" prefHeight="25.0" prefWidth="131.0" text="Consulter dossier" textFill="#eb0505" />
+		<Button fx:id="ajoutArticle" layoutX="316.0" layoutY="178.0" mnemonicParsing="false" onAction="#OnClickAjoutArticle" prefHeight="25.0" prefWidth="131.0" text="Ajouter Article" />
+      <Label layoutX="163.0" layoutY="14.0" text="E-Sport Boutque Bienvenue" />
+      <Label layoutX="24.0" layoutY="49.0" text="Les cas d'utilisation ayant été implémentés sont : " />
+      <Label layoutX="29.0" layoutY="66.0" text="- La vente d'un article avec son paiement sur place" />
+      <Label layoutX="29.0" layoutY="83.0" text="- Ajouter un article dans la base de données" />
+      <Label layoutX="29.0" layoutY="100.0" text="- Consulter le catalogue d'articles." />
 	</children>
 </AnchorPane>

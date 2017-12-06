@@ -35,20 +35,6 @@ public class Inventaire
 		{
 			Liste.get(exist).setQuantity(article.getQuantity() + Liste.get(exist).getQuantity());
 			System.out.println("Item Update");
-		}/*
-		int i = 0;
-		for (int a =0; a<Liste.size(); a++) {
-			if(article.getName().equals(Liste.get(a).getName())){
-				Liste.get(a).setQuantity(article.getQuantity() + Liste.get(a).getQuantity());
-				System.out.println("Item Update");
-				i++;
-			}
 		}
-
-		if(i == 0) {
-			Liste.add(article);
-			System.out.println("Add Article");
-		}	*/	
 	}
-
 }

@@ -37,9 +37,10 @@ public class ControllerFacade
 	@FXML
 	void OnClickInscriptionMembre(ActionEvent event) 
 	{
-		new Alert(Alert.AlertType.INFORMATION, "Non-implementer, les cas d'utilisation ayant été implémentés sont la vente d'un article avec son paiement sur place, ajouter un article dans la base de données et consulter le catalogue d'articles.").showAndWait();
+		this.ShowMessageNotImplementedYet();
 	}
 
+	// Nouvelle Vente
 	@FXML
 	void OnClickNouvelleVente(ActionEvent event) 
 	{
@@ -58,6 +59,7 @@ public class ControllerFacade
 		}
 	}
 
+	// Consulter inventaire
 	@FXML
 	void OnClickConsulterInventaire(ActionEvent event) 
 	{
@@ -76,18 +78,21 @@ public class ControllerFacade
 		}
 	}
 
+	// Payer facture
 	@FXML
 	void OnClickPayerFacture(ActionEvent event) 
 	{
-		new Alert(Alert.AlertType.INFORMATION, "Non-implementer, les cas d'utilisation ayant été implémentés sont la vente d'un article avec son paiement sur place, ajouter un article dans la base de données et consulter le catalogue d'articles.").showAndWait();
+		this.ShowMessageNotImplementedYet();
 	}
 
+	// Dossier membre
 	@FXML
 	void OnClickDossierMembre(ActionEvent event) 
 	{
-		new Alert(Alert.AlertType.INFORMATION, "Non-implementer, les cas d'utilisation ayant été implémentés sont la vente d'un article avec son paiement sur place, ajouter un article dans la base de données et consulter le catalogue d'articles.").showAndWait();
+		this.ShowMessageNotImplementedYet();
 	}
 
+	// Ajouter article
 	@FXML
 	void OnClickAjoutArticle(ActionEvent event) 
 	{
@@ -104,6 +109,11 @@ public class ControllerFacade
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	private void ShowMessageNotImplementedYet()
+	{
+		new Alert(Alert.AlertType.INFORMATION, "Non-implementer, les cas d'utilisation ayant été implémentés sont :\n  - La vente d'un article avec son paiement sur place\n  - Ajouter un article dans la base de données\n  - Consulter le catalogue d'articles.").showAndWait();
 	}
 
 }

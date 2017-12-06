@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 public class ControllerAjoutArticle 
 {
+	private Parent rootContainer;
 
 	@FXML
 	private Button butAjout;
@@ -34,18 +35,19 @@ public class ControllerAjoutArticle
 	@FXML
 	void OnclickAjouter(ActionEvent event) 
 	{
+		// Si une case vide alors erreur
 		if(this.txtNameArticle.getText().equals("") || this.txtIDArticle.getText().equals("") || this.txtQuantity.getText().equals("") || this.txtPriceArticle.getText().equals("")) 
 		{
 			new Alert(Alert.AlertType.ERROR, "Il semble y avoir une erreur dans l'ajout d'article. Un des champs n'est pas remplis.").showAndWait();
-			System.out.println("Il semble y avoir une erreur dans l'ajout d'article. Un des champs n'est pas remplis.");
 			return;
 		}
 		try 
 		{
+			// Creation de l'article grace au UI
 			Article article = new Article(this.txtIDArticle.getText(),this.txtNameArticle.getText(), Double.parseDouble(this.txtPriceArticle.getText()),Integer.parseInt(this.txtQuantity.getText()));
 			InventaireSingleton.getInstance().AddItem(article);
-			System.out.println("End");
-			Parent rootContainer;
+			
+			// On retourne sur la facade
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			Scene s=new Scene(rootContainer);
@@ -62,7 +64,7 @@ public class ControllerAjoutArticle
 	{
 		try 
 		{
-			Parent rootContainer;
+			// On retourne sur la facade
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			Scene s=new Scene(rootContainer);
