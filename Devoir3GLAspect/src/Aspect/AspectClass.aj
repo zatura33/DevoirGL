@@ -3,14 +3,75 @@ import Models.Article;
 import Models.Inventaire;
 import Models.InventaireSingleton;
 import Models.Membre;
+import SystemeFacture.Facture;
+import SystemePaiement.Paiement;
 import SystemeFacture.Vente;
-
+import application.DataBase;
+import java.util.Date;
 import java.util.List;
 import application.ControllerAjoutArticle;
 import application.ControllerNouvelleVente;
-import application.DataBase;
-public aspect AspectClass {
 
+public aspect AspectClass 
+{
+	// ------------------------------- Aspect 1 Log des acces a la DataBase------------------------------------//
+	private Date date;
+	pointcut callGetInventaire(): call(* DataBase.GetInventaire());
+	pointcut callGetListMembre(): call(* DataBase.GetListMembre());
+	pointcut callGetFacture(): call(* DataBase.GetFacture());
+	pointcut callGetVente(): call(* DataBase.GetVentes());
+
+	pointcut callAddFacture(): call(void DataBase.AddFacture(Facture));
+	pointcut callAddPaiement(): call(void DataBase.AddPaiement(Paiement));
+	pointcut callAddVente(): call(void DataBase.AddVente(Vente));
+
+	after() : callGetInventaire()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Acces a l'inventaire sur la base de données");
+    }
+	after() : callGetListMembre()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Acces a la liste des membres sur la base de données");
+    }
+	after() : callGetFacture()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Acces a la liste des factures sur la base de données");
+    }
+	after() : callGetVente()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Acces a la liste des ventes sur la base de données");
+    }
+	
+	after() : callAddFacture()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Ajout d`une facture sur la base de données");
+    }
+	
+	after() : callAddPaiement()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Ajout d`un paiement sur la base de données");
+    }
+	
+	after() : callAddVente()
+	{
+		date = new Date();
+        System.out.println(date.toString());
+        System.out.println("Ajout d`une vente sur la base de données");
+    }
+	
+	// ------------------------------- Aspect TEST Ne pas prendre en compte ... ------------------------------------//
 	public int Inventaire.ItemExist(Article article, List<Article> Liste) 
 	{		
 		for (int a = 0;a<Liste.size(); a++) 
@@ -58,4 +119,6 @@ public aspect AspectClass {
 		}
 		throw new IllegalArgumentException("Cette personne n'est pas un membre");
 	}
+
+	 
 }

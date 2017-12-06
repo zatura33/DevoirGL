@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.List;
+
 import application.DataBase;
 
 public class Membre {
@@ -85,9 +87,11 @@ public class Membre {
 	
 	public Membre ReturnMembreByCodeUtilisateur(String CodeUtilisateur) 
 	{
-		for (int i = 0; i< DataBase.GetListMembre().size(); i++) {
-			if (DataBase.GetListMembre().get(i).CodeUtilisateur.equals(CodeUtilisateur)) {
-				return DataBase.GetListMembre().get(i);
+		List<Membre> listMembre = DataBase.GetListMembre();
+		
+		for (int i = 0; i< listMembre.size(); i++) {
+			if (listMembre.get(i).CodeUtilisateur.equals(CodeUtilisateur)) {
+				return listMembre.get(i);
 			}
 		}
 		return null;

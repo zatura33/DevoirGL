@@ -66,9 +66,11 @@ public class Vente
 	
 	public Vente ReturnVenteByID(int ID) 
 	{
-		for (int i = 0; i< DataBase.GetVentes().size(); i++) {
-			if (DataBase.GetVentes().get(i).ID == ID) {
-				return DataBase.GetVentes().get(i);
+		List<Vente> listVente = DataBase.GetVentes();
+		
+		for (int i = 0; i< listVente.size(); i++) {
+			if (listVente.get(i).ID == ID) {
+				return listVente.get(i);
 			}
 		}
 		return null;

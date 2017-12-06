@@ -1,5 +1,7 @@
 package SystemeFacture;
 
+import java.util.List;
+
 import SystemePaiement.*;
 import application.DataBase;
 
@@ -79,9 +81,11 @@ public class Facture
 	
 	public Facture ReturnFactureByNumFacture(String NumFacture) 
 	{
-		for (int i = 0; i< DataBase.GetFacture().size(); i++) {
-			if (DataBase.GetFacture().get(i).getNumFacture() == NumFacture) {
-				return DataBase.GetFacture().get(i);
+		List<Facture> listFacture = DataBase.GetFacture();
+		
+		for (int i = 0; i< listFacture.size(); i++) {
+			if (listFacture.get(i).getNumFacture() == NumFacture) {
+				return listFacture.get(i);
 			}
 		}
 		return null;
