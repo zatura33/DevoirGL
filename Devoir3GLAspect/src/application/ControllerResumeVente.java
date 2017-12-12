@@ -104,6 +104,7 @@ public class ControllerResumeVente implements Initializable
 		// Ajout de la facture dans la BDD, elle sera disponnible en mode estPaye : false pour le paiement, et nous retournons sur la facade
 		DataBase.AddFacture(facture);
 		new Alert(Alert.AlertType.CONFIRMATION, "Voici votre numero de facture : "+facture.getNumFacture()+ "\nVeuillez le notez pour le paiement futur de celle-ci.").showAndWait();
+		PayerPlusTard();
 		try 
 		{
 			Parent rootContainer;
@@ -116,8 +117,10 @@ public class ControllerResumeVente implements Initializable
 		{
 			e.printStackTrace();
 		}
-
 	}
+	
+	// Le aspect ne peut appeler une methode overide JavaFX donc je lance cette méthode after le lancement
+	private void PayerPlusTard() {}
 
 	public void ErrorMessage() 
 	{

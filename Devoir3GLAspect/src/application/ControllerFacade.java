@@ -57,7 +57,11 @@ public class ControllerFacade
 		{
 			e.printStackTrace();
 		}
+		NouvelleVente();
 	}
+	
+	// Le aspect ne peut appeler une methode overide JavaFX donc je lance cette mÃ©thode after le lancement
+	public void NouvelleVente() {}
 
 	// Consulter inventaire
 	@FXML
@@ -113,7 +117,7 @@ public class ControllerFacade
 	
 	private void ShowMessageNotImplementedYet()
 	{
-		new Alert(Alert.AlertType.INFORMATION, "Non-implementer, les cas d'utilisation ayant été implémentés sont :\n  - La vente d'un article avec son paiement sur place\n  - Ajouter un article dans la base de données\n  - Consulter le catalogue d'articles.").showAndWait();
+		new Alert(Alert.AlertType.INFORMATION, "Non-implementer, les cas d'utilisation ayant ï¿½tï¿½ implï¿½mentï¿½s sont :\n  - La vente d'un article avec son paiement sur place\n  - Ajouter un article dans la base de donnï¿½es\n  - Consulter le catalogue d'articles.").showAndWait();
 	}
 
 }

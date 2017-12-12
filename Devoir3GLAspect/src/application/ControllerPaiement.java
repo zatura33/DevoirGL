@@ -49,12 +49,12 @@ public class ControllerPaiement implements Initializable
 			return;
 		}
 		
-		// Le paiement est effectué nous pouvons donc créer le paiement, le stocker dans la BDD et mettre la facture en mode estPaye en true
+		// Le paiement est effectuï¿½ nous pouvons donc crï¿½er le paiement, le stocker dans la BDD et mettre la facture en mode estPaye en true
 		Paiement paiement = facture.CreatePaiement(this.methodePaiement);
 		facture.setEstPaye(true);
 		DataBase.AddPaiement(paiement);
-		new Alert(Alert.AlertType.CONFIRMATION, "Paiement effectué avec succes.").showAndWait();
-
+		new Alert(Alert.AlertType.CONFIRMATION, "Paiement effectuï¿½ avec succes.").showAndWait();
+		EffectuerPaiement();
 		try 
 		{
 			rootContainer = FXMLLoader.load(getClass().getResource("/application/Facade.fxml"));
@@ -69,6 +69,9 @@ public class ControllerPaiement implements Initializable
 			e.printStackTrace();
 		} 
 	}
+	
+	// Le aspect ne peut appeler une methode overide JavaFX donc je lance cette mÃ©thode after le lancement
+	private void EffectuerPaiement() {}
 
 	@FXML
 	void OnClickAnnuler(ActionEvent event) 

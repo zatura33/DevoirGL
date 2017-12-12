@@ -7,17 +7,23 @@ import SystemeFacture.Facture;
 import SystemePaiement.Paiement;
 import SystemeFacture.Vente;
 import application.DataBase;
+import application.ControllerFacade;
+import application.ControllerResumeVente;
+import application.ControllerPaiement;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import application.ControllerAjoutArticle;
 import application.ControllerNouvelleVente;
-import application.ControllerPaiement;
 
 
 public aspect AspectClass 
 {
 	// ------------------------------- Aspect 1 Log des acces a la DataBase------------------------------------//
 	private Date date;
+	private Instant timeBegin;
+	private Instant timeFinish;
 	pointcut callGetInventaire(): call(* DataBase.GetInventaire());
 	pointcut callGetListMembre(): call(* DataBase.GetListMembre());
 	pointcut callGetFacture(): call(* DataBase.GetFacture());
@@ -72,19 +78,34 @@ public aspect AspectClass
         System.out.println(date.toString());
         System.out.println("Ajout d`une vente sur la base de donn�es");
     }
-	// ------------------------------- Aspect 2 Supprimer le client si la facture est payé ------------------------------------//
+	// ------------------------------- Aspect 2 Calculer le temps d'une vente ------------------------------------//
 
-	pointcut callAddPaiementX(Paiement paiement):
-		call(void AddPaiement(Paiement))&& args(paiement)&& within (ControllerPaiement);
+	pointcut callDebutVenteX():
+		call(void ControllerFacade.NouvelleVente());
 	
-	before(Paiement paiement): callAddPaiementX(paiement)
+	pointcut callPayerPlusTardX():
+		call(void ControllerResumeVente.PayerPlusTard());
+	
+	pointcut callPayerVenteX():
+		call(void ControllerPaiement.EffectuerPaiement());
+	
+	before(): callDebutVenteX()
 	{
-		if(paiement.getFacture().isEstPaye())
-		{
-			paiement.getFacture().getVente().setMembre(null);
-	        System.out.println(date.toString());
-	        System.out.println("Facture payé, client supprimé");
-		}
+		timeBegin = Instant.now();
+	}
+	
+	before(): callPayerPlusTardX()
+	{
+		timeFinish = Instant.now();
+		Duration timeElapsed = Duration.between(timeBegin, timeFinish);
+		System.out.println("La caisse a mis "+ timeElapsed.toMillis() +"ms pour effectuer une vente (non payé)");
+	}
+	
+	before(): callPayerVenteX()
+	{
+		timeFinish = Instant.now();
+		Duration timeElapsed = Duration.between(timeBegin, timeFinish);
+        System.out.println("La caisse a mis "+ timeElapsed.toMillis() +"ms pour effectuer une vente (payé)");
 	}
 	
 	// ------------------------------- Aspect TEST Ne pas prendre en compte ... ------------------------------------//
